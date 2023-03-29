@@ -1,0 +1,26 @@
+{
+  "HTTPStatus.OK": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "number"
+      },
+      "message": {
+        "type": "null"
+      },
+      "data": {
+        "$ref": "definitions-1.schema.json#"
+      },
+      "correlationId": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "status",
+      "message",
+      "data",
+      "correlationId"
+    ],
+    "additionalProperties": false
+  }
+}

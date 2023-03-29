@@ -1,0 +1,107 @@
+{
+  "HTTPStatus.OK": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+      "id": {
+        "type": "number"
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "isActual": {
+        "type": "boolean"
+      },
+      "author": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "email": {
+            "type": ["string", "null"]
+          },
+          "firstName": {
+            "type": ["string", "null"]
+          },
+          "middleName": {
+            "type": ["string", "null"]
+          },
+          "lastName": {
+            "type": ["string", "null"]
+          }
+        }
+      },
+      "products": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "id": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "title",
+            "id"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+      "required": [
+      "id",
+      "createdAt",
+      "isActual",
+      "author",
+      "products"
+    ],
+      "additionalProperties": false
+    }
+  },
+  "HTTPStatus.BAD_REQUEST":{
+    "type": "object",
+    "properties": {
+      "message": {
+        "type": "string"
+      },
+      "messageDetail": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "message",
+      "messageDetail"
+    ],
+    "additionalProperties": false
+  },
+  "HTTPStatus.INTERNAL_SERVER_ERROR":{
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "number"
+      },
+      "message": {
+        "type": "string"
+      },
+      "data": {
+        "type": "null"
+      },
+      "correlationId": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "status",
+      "message",
+      "data",
+      "correlationId"
+    ],
+    "additionalProperties": false
+  }
+}
