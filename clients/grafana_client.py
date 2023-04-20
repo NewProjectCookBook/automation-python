@@ -3,11 +3,11 @@ from __future__ import annotations
 from typing import Any
 
 from influxdb import InfluxDBClient
-from requests import Response
 
 
 class GrafanaClient:
     """ GrafanaClient helps to save test results """
+
     def __init__(self, host: str, port: int, username: str, password: str, database: str) -> None:
         """
         Initializes the InfluxDB client.
@@ -49,19 +49,18 @@ class GrafanaClient:
         result = self.client.query(query)
         return result.raw['series'][0]['values']
 
-    def insert_request_results(self, measurement: str, response: Response) -> None:
+    def insert_request_result(self, measurement: str, total_seconds: int) -> None:
         """
         Inserts the total request time from a `requests` response object into InfluxDB.
 
         :param measurement: The name of the measurement to insert into.
-        :param response: The `requests` response object to extract the total time from.
+        :param total_seconds: Total seconds of response to provide it as an argument for 'total_time'.
         """
-        total_time = response.elapsed.total_seconds()
         json_body = [
             {
                 'measurement': measurement,
                 'fields': {
-                    'total_time': total_time
+                    'total_time': total_seconds
                 }
             }
         ]
